@@ -95,7 +95,7 @@ export default function Footer() {
         </div>
 
         <div className="mt-9 border-t border-white/10 pt-5 text-center text-xs leading-6 text-[#939b8d] sm:flex sm:items-center sm:justify-between sm:text-left">
-          <p>© {new Date().getFullYear()} Pure Herbal Oil. All rights reserved.</p>
+          <p>© 2026 Pure Herbal Oil. All rights reserved.</p>
           <p>Rooted in Nature · Made with Care 🌿</p>
         </div>
       </div>
