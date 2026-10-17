@@ -19,7 +19,7 @@ const products = [
     category: "HAIR CARE",
     description:
       "A nature-inspired hair-care oil made with herbal ingredients for your regular hair-care ritual.",
-    price: "Rs. 700",
+    price: "Rs. 1100",
     image: "/hair.png",
     number: "02",
   },
