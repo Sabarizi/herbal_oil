@@ -1,7 +1,7 @@
 
 "use client";
 
-import { useState } from "react";
+import { Suspense, useState } from "react";
 import { useParams } from "next/navigation";
 import Link from "next/link";
 
@@ -58,8 +58,6 @@ const products: Record<
   },
 };
 
-// Each product has its own prices.
-// Change prices for one product without affecting the others.
 const productSizes: Record<
   string,
   { ml: number; price: number }[]
@@ -83,7 +81,7 @@ const productSizes: Record<
   ],
 };
 
-export default function ProductDetailPage() {
+function ProductDetailContent() {
   const params = useParams<{ slug: string }>();
   const slug = params.slug;
 
@@ -125,7 +123,6 @@ export default function ProductDetailPage() {
     );
   }
 
-  // Keep the selected index valid for this product.
   const safeSelectedSize = Math.min(
     selectedSize,
     sizes.length - 1
@@ -170,19 +167,14 @@ export default function ProductDetailPage() {
 
   return (
     <main className="min-h-screen overflow-hidden bg-[#101812] text-[#f6f1e6]">
-      {/* Decorative Hero Background */}
       <section className="relative border-b border-white/[0.07] bg-[radial-gradient(ellipse_at_top_left,#294532_0%,#17271c_48%,#101812_100%)]">
         <div className="pointer-events-none absolute -left-28 top-16 h-72 w-72 rounded-full border border-[#d1bd83]/10" />
 
         <div className="pointer-events-none absolute -right-20 top-20 h-80 w-80 rounded-full bg-[#b8a36a]/[0.04] blur-3xl" />
 
         <div className="relative mx-auto max-w-7xl px-5 pb-12 pt-8 sm:px-8 sm:pb-16">
-          {/* Breadcrumb */}
           <nav className="mb-9 flex flex-wrap items-center gap-2 text-xs text-[#aeb9a9] sm:text-sm">
-            <Link
-              href="/"
-              className="transition hover:text-[#e3d3a5]"
-            >
+            <Link href="/" className="transition hover:text-[#e3d3a5]">
               Home
             </Link>
 
@@ -203,7 +195,6 @@ export default function ProductDetailPage() {
           </nav>
 
           <div className="grid items-center gap-10 lg:grid-cols-2 lg:gap-16">
-            {/* Product Image */}
             <div className="relative">
               <div className="absolute -inset-3 rounded-[2rem] border border-[#cbb77c]/20" />
 
@@ -239,7 +230,6 @@ export default function ProductDetailPage() {
               </p>
             </div>
 
-            {/* Product Details */}
             <div className="relative py-3 lg:py-8">
               <div className="flex items-center gap-3">
                 <span className="h-px w-9 bg-[#cbb77c]" />
@@ -288,7 +278,6 @@ export default function ProductDetailPage() {
                 ))}
               </ul>
 
-              {/* Bottle Size */}
               <div className="mt-9">
                 <p className="mb-4 text-sm font-semibold text-[#eee7d8]">
                   Select Bottle Size
@@ -319,7 +308,6 @@ export default function ProductDetailPage() {
                 </div>
               </div>
 
-              {/* Quantity and Total */}
               <div className="mt-7 flex flex-wrap items-center justify-between gap-4">
                 <div>
                   <p className="mb-3 text-sm font-semibold text-[#eee7d8]">
@@ -366,7 +354,6 @@ export default function ProductDetailPage() {
                 </div>
               </div>
 
-              {/* Buy Now */}
               <button
                 type="button"
                 onClick={() => setShowOrderForm(true)}
@@ -384,7 +371,6 @@ export default function ProductDetailPage() {
         </div>
       </section>
 
-      {/* Customer Order Modal */}
       {showOrderForm && (
         <div
           className="fixed inset-0 z-[100] flex items-center justify-center overflow-y-auto bg-black/80 p-4 backdrop-blur-sm"
@@ -428,7 +414,6 @@ export default function ProductDetailPage() {
               </button>
             </div>
 
-            {/* Order Summary */}
             <div className="mt-6 rounded-2xl border border-[#cbb77c]/15 bg-[#223529] p-4">
               <p className="font-serif text-lg">
                 {product.name}
@@ -543,5 +528,21 @@ export default function ProductDetailPage() {
         </div>
       )}
     </main>
+  );
+}
+
+export default function ProductDetailPage() {
+  return (
+    <Suspense
+      fallback={
+        <main className="flex min-h-screen items-center justify-center bg-[#101812] text-[#e3d4a7]">
+          <p className="animate-pulse font-serif text-lg">
+            Loading Pure Herbal Oil...
+          </p>
+        </main>
+      }
+    >
+      <ProductDetailContent />
+    </Suspense>
   );
 }
