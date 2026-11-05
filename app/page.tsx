@@ -140,12 +140,7 @@ export default function Home() {
               </div>
             </div>
 
-            <div className="absolute -bottom-5 -left-3 rounded-2xl border border-[#e3d7b7] bg-[#faf6e9] px-5 py-4 text-[#284531] shadow-xl sm:-left-8">
-              <p className="font-serif text-2xl">Pure & Simple</p>
-              <p className="mt-1 text-xs tracking-wider text-[#71816a]">
-                INSPIRED BY NATURE
-              </p>
-            </div>
+            
           </div>
         </div>
       </section>

@@ -91,6 +91,14 @@ export default function Footer() {
             >
               Chat on WhatsApp ↗
             </a>
+   <a
+  href="https://mail.google.com/mail/?view=cm&fs=1&to=herbalpure24@gmail.com"
+  target="_blank"
+  rel="noopener noreferrer"
+  className="mt-5 inline-flex rounded-full border border-[#d6c18a]/50 px-5 py-2 text-sm text-[#d6c18a] transition hover:bg-[#d6c18a] hover:text-[#101812]"
+>
+  Email Us ↗
+</a>
           </div>
         </div>
 

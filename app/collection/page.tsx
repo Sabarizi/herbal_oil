@@ -33,7 +33,36 @@ const products = [
     image: "/itch.png",
     number: "03",
   },
-  
+  {
+    id: "baby-care-oil",
+    name: "Herbal Baby Care Oil",
+    category: "HERBAL CARE",
+    description:
+      "A herbal oil preparation designed to be part of a thoughtful personal-care routine.",
+    price: "Rs. 300",
+    image: "/baby.png",
+    number: "04",
+  },
+    {
+    id: "Anti-lice-oil",
+    name: "Herbal Anti-Lice Oil",
+    category: "HERBAL CARE",
+    description:
+      "A herbal oil preparation designed to be part of a thoughtful personal-care routine.",
+    price: "Rs. 300",
+    image: "/lice.png",
+    number: "05",
+  },
+    {
+    id: "beard-mustache-oil",
+    name: "Herbal Beard & Mustache Oil",
+    category: "HERBAL CARE",
+    description:
+      "A herbal oil preparation designed to be part of a thoughtful personal-care routine.",
+    price: "Rs. 450",
+    image: "/beard.png",
+    number: "06",
+  },
 ];
 
 export default function CollectionPage() {
@@ -117,7 +146,7 @@ export default function CollectionPage() {
                   </div>
 
                   <span className="mt-1 shrink-0 rounded-full border border-white/10 px-2.5 py-1.5 text-[10px] text-[#c7d0c1]">
-                    100 ml
+                    50 ml
                   </span>
                 </div>
 

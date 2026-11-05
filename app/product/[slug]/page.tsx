@@ -2,7 +2,7 @@
 "use client";
 
 import { Suspense, useState } from "react";
-import { useParams } from "next/navigation";
+import { useParams, useRouter } from "next/navigation";
 import Link from "next/link";
 
 const products: Record<
@@ -56,32 +56,89 @@ const products: Record<
     ],
     image: "/itch.png",
   },
+   "baby-care-oil": {
+    name: "Herbal Baby Care Oil",
+    category: "BABY CARE",
+    description:
+      "A gentle herbal oil for your baby's skin care routine.",
+    benefits: [
+      "Made with natural ingredients",
+      "Suitable for sensitive baby skin",
+      "For external use only",
+      "Patch test before first use",
+    ],
+    image: "/baby.png",
+  },
+   "Anti-lice-oil": {
+    name: "Anti-Lice Oil",
+    category: "HAIR CARE",
+    description:
+      "A herbal oil designed to help eliminate lice and nits from the hair.",
+    benefits: [
+      "Made with natural ingredients",
+      "Effective against lice and nits",
+      "For external use only",
+      "Patch test before first use",
+    ],
+    image: "/lice.png",
+  },
+  "beard-mustache-oil": {
+    name: "Herbal Beard & Mustache Oil",
+    category: "HERBAL CARE",
+    description:
+      "A herbal oil preparation designed to be part of a thoughtful personal-care routine.",
+    benefits: [
+      "Made with natural ingredients",
+      "Effective against lice and nits",
+      "For external use only",
+      "Patch test before first use",
+    ],
+    image: "/beard.png",
+  },
 };
+  
 
 const productSizes: Record<
   string,
   { ml: number; price: number }[]
 > = {
   "pain-relief-oil": [
-    { ml: 50, price: 350 },
-    { ml: 100, price: 500 },
-    { ml: 150, price: 700 },
+    { ml: 30, price: 200 },
+    { ml: 50, price: 300 },
+    { ml: 100, price: 600 },
   ],
 
   "hair-growth-oil": [
-    { ml: 50, price: 600 },
-    { ml: 100, price: 1150 },
-    { ml: 150, price: 1750 },
+    { ml: 30, price: 450 },
+    { ml: 50, price: 850 },
+    { ml: 100, price: 1699 },
   ],
 
   "itch-care-oil": [
-    { ml: 50, price: 350 },
-    { ml: 100, price: 550 },
-    { ml: 150, price: 750 },
+    { ml: 30, price: 200 },
+    { ml: 50, price: 300 },
+    { ml: 100, price: 600 },
+  ],
+   "baby-care-oil": [
+    { ml: 30, price: 200 },
+    { ml: 50, price: 300 },
+    { ml: 100, price: 600 },
+  ],
+   "Anti-lice-oil": [
+    { ml: 30, price: 200 },
+    { ml: 50, price: 300 },
+    { ml: 100, price: 600 },
+  ],
+    "beard-mustache-oil": [
+    { ml: 30, price: 450 },
+    { ml: 50, price: 850 },
+    { ml: 100, price: 1599 },
   ],
 };
 
 function ProductDetailContent() {
+  const router = useRouter();
+
   const params = useParams<{ slug: string }>();
   const slug = params.slug;
 
@@ -158,11 +215,12 @@ function ProductDetailContent() {
       `Total: Rs. ${total}`,
     ].join("\n");
 
-    const url = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(
-      message
-    )}`;
+    const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`;
 
-    window.open(url, "_blank", "noopener,noreferrer");
+    // Open WhatsApp in a new tab, then show the website's thank-you page.
+    window.open(whatsappUrl, "_blank", "noopener,noreferrer");
+    setShowOrderForm(false);
+    router.push("/thank-you");
   }
 
   return (
@@ -520,8 +578,7 @@ function ProductDetailContent() {
               </button>
 
               <p className="text-center text-xs leading-5 text-[#9eaa9b]">
-                Your order will open as a WhatsApp message. Press Send
-                in WhatsApp to confirm your order.
+                WhatsApp will open with your order details. Press Send in WhatsApp to place your order.
               </p>
             </form>
           </div>
